@@ -1,4 +1,6 @@
 ﻿
+using System.Globalization;
+
 double saldo = 0, valor = 0, saque;
 
 var senha = 12345;
@@ -33,7 +35,7 @@ void Menu()
 }
 void ConsultarSaldo()
 {
-    Console.WriteLine($"\nO saldo atual é: {saldo}\n");
+    Console.WriteLine($"\nO saldo atual é: {saldo.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"))}\n");
     Thread.Sleep(3000);
     Menu();
 
@@ -42,13 +44,13 @@ void Depositar()
 {
 
     Console.ForegroundColor = ConsoleColor.DarkBlue;
-    Console.Write("\nInforme o valor para depósito: ");
+    Console.Write("\nInforme o valor para depósito: R$ ");
     valor = double.Parse(Console.ReadLine()!);  
 
     if (valor != 0)
     {        
         saldo += valor;
-        Console.WriteLine($"\nSeu novo saldo é: {saldo}\n");
+        Console.WriteLine($"\nSeu novo saldo é: {saldo.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"))}\n");
         Thread.Sleep(3000);
         Menu();
     }
@@ -62,13 +64,13 @@ void Sacar()
 {
     Console.ForegroundColor = ConsoleColor.DarkRed;
 
-    Console.Write("\nInforme o valor para sacar: ");
+    Console.Write("\nInforme o valor para sacar: R$ ");
     saque = double.Parse(Console.ReadLine()!);
 
     if (saldo >= saque)
     {
         saldo -= saque;
-        Console.WriteLine($"\nSeu novo saldo é: {saldo}\n");
+        Console.WriteLine($"\nSeu novo saldo é: {saldo.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"))}\n");
     }
     else
     {
