@@ -24,18 +24,18 @@ void Menu()
     Console.Write("\nInforme a opção desejada: ");
     byte res = byte.Parse(Console.ReadLine()!);
 
-        switch (res)
-        {
-            case 1: ConsultarSaldo(); break;
-            case 2: Depositar(); break;
-            case 3: Sacar(); break;
-            case 4: Sair(); break;
-            default: Console.WriteLine("Opção Invalida!"); Thread.Sleep(1000); Menu(); break;
-        }
+    switch (res)
+    {
+        case 1: ConsultarSaldo(); break;
+        case 2: Depositar(); break;
+        case 3: Sacar(); break;
+        case 4: Sair(); break;
+        default: Console.WriteLine("Opção Invalida!"); Thread.Sleep(1000); Menu(); break;
+    }
 }
 void ConsultarSaldo()
 {
-    Console.WriteLine($"\nO saldo atual é: {saldo.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"))}\n");
+    Console.WriteLine($"\nO saldo atual é: {saldo:C}\n");
     Thread.Sleep(3000);
     Menu();
 
@@ -44,18 +44,20 @@ void Depositar()
 {
 
     Console.ForegroundColor = ConsoleColor.DarkBlue;
+    Console.BackgroundColor = ConsoleColor.White;
+
     Console.Write("\nInforme o valor para depósito: R$ ");
-    valor = double.Parse(Console.ReadLine()!);  
+    valor = double.Parse(Console.ReadLine()!);
 
     if (valor != 0)
-    {        
+    {
         saldo += valor;
-        Console.WriteLine($"\nSeu novo saldo é: {saldo.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"))}\n");
+        Console.WriteLine($"\nSeu novo saldo é: {saldo:C}\n");
         Thread.Sleep(3000);
         Menu();
-    }
-    else
-    {
+
+    } else {
+
         Console.WriteLine("\nInforme um valor para depósito válido!\n");
         Depositar();
     }
@@ -63,6 +65,7 @@ void Depositar()
 void Sacar()
 {
     Console.ForegroundColor = ConsoleColor.DarkRed;
+    Console.BackgroundColor = ConsoleColor.White;
 
     Console.Write("\nInforme o valor para sacar: R$ ");
     saque = double.Parse(Console.ReadLine()!);
@@ -70,11 +73,11 @@ void Sacar()
     if (saldo >= saque)
     {
         saldo -= saque;
-        Console.WriteLine($"\nSeu novo saldo é: {saldo.ToString("C", CultureInfo.CreateSpecificCulture("pt-BR"))}\n");
+        Console.WriteLine($"\nSeu novo saldo é: {saldo:C}\n");
     }
     else
     {
-        Console.WriteLine($"\nSaldo indisponível, seu saldo atual é: {saldo}\n");
+        Console.WriteLine($"\nSaldo indisponível, seu saldo atual é: {saldo:C}\n");
     }
 
     Thread.Sleep(3000);
@@ -97,12 +100,11 @@ void VerificadorDeSenha()
         {
             Console.WriteLine("Senha correta!");
             Menu();
-
         }
     }
 
- Console.WriteLine("Senha bloqueada! Para sua segurança, dirija-se à um atendente para cadastrar uma nova senha.");
- Sair();
+    Console.WriteLine("Senha bloqueada! Para sua segurança, dirija-se à um atendente para cadastrar uma nova senha.");
+    Sair();
 }
 
 
