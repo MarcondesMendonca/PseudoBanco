@@ -1,5 +1,5 @@
 ﻿
-double saldo = 0, valor, saque;
+double saldo = 0, valor = 0, saque;
 
 var senha = 12345;
 
@@ -12,11 +12,12 @@ void Menu()
     Console.BackgroundColor = ConsoleColor.DarkGreen;
 
     Console.Clear();
-    Console.WriteLine("*******************");
+    Console.WriteLine("***********************");
     Console.WriteLine("[1] - Consultar Saldo");
     Console.WriteLine("[2] - Depositar      ");
     Console.WriteLine("[3] - Sacar          ");
     Console.WriteLine("[4] - Sair           ");
+    Console.WriteLine("\n**********************");
 
     Console.Write("\nInforme a opção desejada: ");
     byte res = byte.Parse(Console.ReadLine()!);
@@ -27,7 +28,7 @@ void Menu()
             case 2: Depositar(); break;
             case 3: Sacar(); break;
             case 4: Sair(); break;
-            default: Menu(); break;
+            default: Console.WriteLine("Opção Invalida!"); Thread.Sleep(1000); Menu(); break;
         }
 }
 void ConsultarSaldo()
@@ -39,20 +40,27 @@ void ConsultarSaldo()
 }
 void Depositar()
 {
-    Console.ForegroundColor = ConsoleColor.White;
-    Console.BackgroundColor = ConsoleColor.DarkBlue;
 
+    Console.ForegroundColor = ConsoleColor.DarkBlue;
     Console.Write("\nInforme o valor para depósito: ");
-    valor = double.Parse(Console.ReadLine()!);
-    saldo += valor;
-    Console.WriteLine($"\nSeu novo saldo é: {saldo}\n");
-    Thread.Sleep(3000);
-    Menu();
+    valor = double.Parse(Console.ReadLine()!);  
+
+    if (valor != 0)
+    {        
+        saldo += valor;
+        Console.WriteLine($"\nSeu novo saldo é: {saldo}\n");
+        Thread.Sleep(3000);
+        Menu();
+    }
+    else
+    {
+        Console.WriteLine("\nInforme um valor para depósito válido!\n");
+        Depositar();
+    }
 }
 void Sacar()
 {
-    Console.ForegroundColor = ConsoleColor.White;
-    Console.BackgroundColor = ConsoleColor.DarkRed;
+    Console.ForegroundColor = ConsoleColor.DarkRed;
 
     Console.Write("\nInforme o valor para sacar: ");
     saque = double.Parse(Console.ReadLine()!);
