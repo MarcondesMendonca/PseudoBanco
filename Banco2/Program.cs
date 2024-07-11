@@ -116,7 +116,7 @@ void VerificadorDeSenha()
             {
                 Console.WriteLine("Senha correta!");
                 Menu();
-            }.
+            }
         }
         
         catch 
